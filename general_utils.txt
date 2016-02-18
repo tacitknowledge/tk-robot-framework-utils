@@ -1,8 +1,8 @@
 
 #####
 
-'Create Random Email' - method that generates unique email address.
-The format will be like: asdrobot1622@autotest.com
+ 'Create Random Email' - method that generates unique email address.
+ The format will be like: asdrobot1622@autotest.com
 
 ##### 
 
@@ -16,8 +16,8 @@ Create Random Email
 
 #####
 
-'Generate Random Number Of Given Xpath Elements' - uses given xpath and generates random result of multiply those found.
-Example: 
+ 'Generate Random Number Of Given Xpath Elements' - uses given xpath and generates random result of multiply those found.
+ Example: 
  You have PDP with 15 look like Xpaths (//div[@id='product'][1] / //div[@id='product'][2]),
  every test you run you want Robot click on a random product (either hardcode 1 / 2 products), so you call this method with Xpath -
  and evey test you run it will generate random of maximum available on page
@@ -33,11 +33,11 @@ Generate Random Number Of Given Xpath Elements
 
 #####
 
-'Generate Random Number Of Given Maximum' - uses given max integer and generates random int
+ 'Generate Random Number Of Given Maximum' - uses given max integer and generates random int
 
-Example: 
-you have 10 entries but you need randomly iterate only with first 5, so you give its 'max' argument 5
-and every test it will generate random from 1 to 5
+ Example: 
+ you have 10 entries but you need randomly iterate only with first 5, so you give its 'max' argument 5
+ and every test it will generate random from 1 to 5
 
 ##### 
 
@@ -48,7 +48,7 @@ Generate Random Number Of Given Maximum
 
 #####
 
-'Set Cookie' - Sets any cookie
+ 'Set Cookie' - Sets any cookie
 
 ##### 
 
