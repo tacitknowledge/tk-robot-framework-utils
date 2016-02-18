@@ -1,0 +1,57 @@
+
+#####
+
+'Create Random Email' - method that generates unique email address.
+The format will be like: asdrobot1622@autotest.com
+
+##### 
+
+Create Random Email
+  ${date}  Get Time  year month day
+  ${srinked_date}  Set Variable  ${date[2]}${date[1]}${date[0]}
+  ${usr_prefix}=  Generate Random String  3  [LOWER]
+  ${random_user}=  Catenate  SEPARATOR=  ${usr_prefix}  robot  ${srinked_date}  @autotest.com
+  [Return]  ${random_user}
+
+
+#####
+
+'Generate Random Number Of Given Xpath Elements' - uses given xpath and generates random result of multiply those found.
+Example: 
+ You have PDP with 15 look like Xpaths (//div[@id='product'][1] / //div[@id='product'][2]),
+ every test you run you want Robot click on a random product (either hardcode 1 / 2 products), so you call this method with Xpath -
+ and evey test you run it will generate random of maximum available on page
+
+##### 
+
+Generate Random Number Of Given Xpath Elements
+  [Arguments]  ${expected_xpath}
+  ${total_of_results}=  Get Matching XPath Count  ${expected_xpath}
+  ${random_result}=  Evaluate  random.sample(range(1, ${total_of_results}), 1)  random
+  Set Global Variable  ${random_result}
+
+
+#####
+
+'Generate Random Number Of Given Maximum' - uses given max integer and generates random int
+
+Example: 
+you have 10 entries but you need randomly iterate only with first 5, so you give its 'max' argument 5
+and every test it will generate random from 1 to 5
+
+##### 
+
+Generate Random Number Of Given Maximum
+  [Arguments]  ${given_max}
+  ${random_num}=  Evaluate  random.sample(range(1, ${given_max}), 1)  random
+  Set Global Variable  ${random_num}
+
+#####
+
+'Set Cookie' - Sets any cookie
+
+##### 
+
+Set Cookie
+  [Arguments]  ${cookie_name}  ${cookie_num_value}
+  Add Cookie  ${cookie_name}  ${cookie_num_value}
