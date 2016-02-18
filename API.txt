@@ -1,0 +1,32 @@
+    #### 
+    
+    Below is an example of how JSON API response can be parsed and validated.
+    
+    ####
+
+    ${result_user}=  GET  /ngswebservices/rest/users
+    ${usr_resp}    Get Response Body
+    ${user_type}  Get Json Value  ${usr_resp}  /user/0/@type
+    Should Be Equal  ${user_type}  "employeeDTO"
+
+
+    ####
+    
+    Simple JSON setup Auth / No Auth
+
+    ####
+
+Test setup Json no Auth
+
+    Set Log Level    TRACE
+    Create HTTP Context  ${HOST}
+    Set Request Header  Accept  application/json
+    Set Request Header  Content-Type  application/json
+
+Test setup Json
+    
+    Set Log Level    TRACE
+    Create HTTP Context  ${HOST}
+    Set Request Header  Accept  application/json
+    Set Request Header  Content-Type  application/json
+    Set Basic Auth    admin    nimda
