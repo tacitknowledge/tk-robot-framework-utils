@@ -55,3 +55,4 @@ Generate Random Number Of Given Maximum
 Set Cookie
   [Arguments]  ${cookie_name}  ${cookie_num_value}
   Add Cookie  ${cookie_name}  ${cookie_num_value}
+  Reload Page
