@@ -1,0 +1,16 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${ADD TO CART}     add to cart button
+
+*** Keywords ***
+Add to Cart
+	Click Button    ${ADD TO CART}
+
+Get Product Price
+    	Wait Until Page Contains Element   ${PDP price}
+    	${price}=	Get Text    ${PDP price}
+    	${originalPriceNumber}= 	Replace String Using Regexp 	${price} 	[^0-9\.]	 ${EMPTY}
+    	${originalPrice}= 	Convert To Number 	${originalPriceNumber}
+    	[Return] 	${originalPrice}

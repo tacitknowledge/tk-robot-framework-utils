@@ -1,0 +1,41 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${GO TO CHECKOUT}     go to checkout button
+${PRODUCT QUANTITY}	  quantity of items
+${UPDATE QUANTITY BUTTON} 	button to update product quantity in cart
+${PRODUCT TOTAL PRICE}		  Product Total Value
+${PRODUCT PRICE}	  Product price
+${ORDER VALUE}		  Order Value
+
+*** Keywords ***
+Go To Checkout
+	Click Button    ${GO TO CHECKOUT}
+
+Set Product Quantity
+	[Arguments]    ${quantity}
+	Input Text	${PRODUCT QUANTITY}		${quantity}
+	Click button  ${UPDATE QUANTITY BUTTON}
+
+Get Product Total Value 
+	#[Arguments]  ${productPosition}=1
+	${price}=	Get Field Price   ${PRODUCT TOTAL PRICE}
+	[Return] 	${price}
+
+Get Product Value
+	#[Arguments]  ${productPosition}=1
+	${price}=	Get Field Price   ${PRODUCT PRICE}
+	[Return] 	${price}
+
+Get Order Value
+  	${price}=	Get Field Price    ${ORDER VALUE}
+	[Return] 	${price}
+
+Get Field Price 
+	[Arguments]  ${fieldIdentifier}
+	Wait Until Page Contains Element    ${fieldIdentifier}
+	${price}=	Get Text    ${fieldIdentifier}
+	${originalPriceNumber}= 	Replace String Using Regexp 	${price} 	[^0-9\.]	 ${EMPTY}
+	${originalPrice}= 	Convert To Number 	${originalPriceNumber}
+	[Return] 	${originalPrice} 

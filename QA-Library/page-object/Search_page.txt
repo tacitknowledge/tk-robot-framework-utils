@@ -1,0 +1,29 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${SEARCH PAGE URL}    		Search page url goes here
+${SEARCH BOX}				Search input, ususaly available from anywhere on the site		
+${SERCH SUBMIT BUTTON}		This button is usualy in the same div with SEARCH BOX		
+${SEARCH RESULT ELEMENT}	xpath to a search resul element
+${RESULTS CONTAINER}		Container with search result elements
+${SEARCH RESULTS FIRST PRODUCT}   Firts product in the list
+${SEARCH RESULTS NOT RETURNED}   Possible id of not found results message
+
+*** Keywords ***
+Submit Search
+    [Arguments]    	${query}    
+    Input Text    	${SEARCH BOX}	${query}
+    Click Element   ${SERCH SUBMIT BUTTON}
+
+Verify Search Results Present
+	Element Should Be Visible  ${SEARCH RESULT ELEMENT}   Search did not return results or identifier is not correct
+
+Wait Until Results Page Is Loaded
+    Wait Until Page Contains Element    ${RESULTS CONTAINER}
+
+Verify Results Page Is Empty
+    Page Should Contain Element    ${SEARCH RESULTS NOT RETURNED}
+
+Select First Product From the List
+    Click    ${SEARCH RESULTS FIRST PRODUCT}

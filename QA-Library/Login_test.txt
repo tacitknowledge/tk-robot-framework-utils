@@ -1,0 +1,32 @@
+*** Settings ***
+Documentation   Login process with invalid data 
+Suite Setup     Open Site
+Suite Teardown  Close All Browsers
+Test Setup      Go To Login Page
+Force Tags      Login  Regression  Negative  Production
+Test Template   Login With Invalid Credentials Should Fail
+
+Resource        common/site_declaration.txt
+Force Tags 		login
+
+*** Variables ***
+${invalid}			variable not set
+
+
+
+*** Test Cases ***              User Name      Password
+
+Invalid Username				${invalid}	   ${VALID PASSWD}
+Invalid Password                ${VALID USER}  ${invalid}
+Invalid Username And Password   ${invalid}     ${invalid}
+Empty Username                  ${EMPTY}       ${VALID PASSWD}
+Empty Password                  ${VALID USER}  ${EMPTY}
+Empty Username And Password     ${EMPTY}       ${EMPTY}
+
+
+*** Keywords ***
+
+Login With Invalid Credentials Should Fail
+    [Arguments]  ${username}  ${password}
+    Login   ${username}  ${password} 
+    Login Should Have Failed

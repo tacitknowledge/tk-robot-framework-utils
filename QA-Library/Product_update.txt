@@ -1,0 +1,39 @@
+*** Settings ***
+Suite Teardown  Close All Browsers
+Test Setup      Reach Cart Page
+Test TearDown 	Close All Browsers
+Test Template   Update product quantity
+
+Resource        common/site_declaration.txt
+
+Force Tags      productupdate
+
+***Variables***
+${more than one} 			3
+${chars instead number} 	t
+${less than zero} 			-1
+${one Product} 				1
+
+*** Test Cases ***            		ItemsCount                  Expected count
+
+Update with greater than 1			${more than one} 			${more than one} 
+Update with chars 		 			${chars instead number} 	${one Product} 
+Update with negative value 			${less than zero} 			${one Product} 
+Update with one  	 				${one product}	 			${one Product} 
+
+*** Keywords ***
+Update product quantity
+    [Arguments]  ${items count}  ${expected count}
+    Set Product Quantity  ${items count}
+    ${product total value}=   Get Product Total Value
+    ${product value}=   Get Product Value	
+    ${expectedPrice}=   Evaluate   ${product value}*${expected count} 
+    Should Be Equal As Numbers  ${expectedPrice}   ${product total value}
+
+
+Reach Cart Page
+	Open Site
+    Delete All Cookies
+	Go to Category Page
+    Select First Product
+    Add to Cart

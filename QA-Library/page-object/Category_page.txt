@@ -1,0 +1,20 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${CATEGORY PAGE URL}        categorypage link
+${FIRTS PRODUCT}    		product locator should be here.
+
+
+*** Keywords ***
+Go to Category Page
+    Go To    ${SERVER}${CATEGORY PAGE URL}
+
+Select First Product
+	Click Link    ${FIRTS PRODUCT}  
+
+Reach Cart Page
+	Go to Category Page
+    Select First Product
+    Add to Cart
+

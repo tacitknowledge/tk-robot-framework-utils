@@ -1,0 +1,36 @@
+*** Settings ***
+Documentation   Testing registration functionality 
+Resource        common/site_declaration.txt
+Force Tags		registration
+
+
+*** Variables ***
+${user mail}				A query to be submitted, more or less depends on project, tha't why it placed here
+${user name}				Name
+${user lastname}			User Last name
+${user pass}				password
+${user dob}					day of birth
+${user month}				month of Birth
+${user year}				Year of Birth
+${post registration message}    post registration address
+${honorific title}			MR. Ms, Mrs.....
+
+
+*** Test Cases ***              User Name      Password
+
+Test Registration Functionality
+	Open Site
+	Go To Registration Page
+	Set Honorifics   ${honorific title}	
+	Set Email  ${user mail}
+	Set Name   ${user name}
+	Set Last Name  ${user lastname}
+	Set Password   ${user pass}
+	Set Day Of Birth	${user dob}
+	Set Month of Birth 	${user month}
+	Set Year of Birth   ${user year}
+	Accept Terms and Conditions
+	Click Register button
+	Page Should Contain   ${post registration message}
+[Teardown]	Close All BroWsers
+

@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation   Testing search functionality 
+Resource        common/site_declaration.txt
+Force Tags 		search
+
+*** Variables ***
+${SEARCH QUERY}				A query to be submitted, more or less depends on project, tha't why it placed here
+
+
+
+*** Test Cases ***              User Name      Password
+
+Test Seacrh Functionality
+	Open Site
+	Submit Search  ${SEARCH QUERY}
+	Verify Search Results Present
+	[Teardown]	Close All BroWsers
+

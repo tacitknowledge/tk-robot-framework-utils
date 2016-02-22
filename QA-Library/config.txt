@@ -1,0 +1,58 @@
+${SERVER}=
+${VALID PASSWD}=
+${VALID USER}=
+${BROWSER}=
+${SEL SPEED}=
+
+#Login page variables
+${LOGIN PAGE URL}=
+${LOGIN EMAIL FIELD}=
+${LOGINPASSWORD FIELD}=
+${LOGIN FORM}=
+${LOGIN ERR MSG}=
+
+${CATEGORYPAGE URL}=
+${ADD TO CART}=
+
+#Cart page Variables
+
+${GO TO CHECKOUT}=
+${PRODUCT QUANTITY}=
+${UPDATE QUANTITY BUTTON}=
+${PRODUCT TOTAL PRICE}=
+${PRODUCT PRICE}=
+${ORDER VALUE}=
+
+{SEARCH PAGE URL}=
+${SEARCH BOX}=
+${SERCH SUBMIT BUTTON}=
+${SEARCH QUERY}=
+${SEARCH RESULT ELEMENT}=
+
+
+#register page variables
+${REGISTRATION PAGE URL}=
+${REGISTRATION EMAIL}=
+${REGISTRATION NAME}=
+${REGISTRATION LASTNAME}=
+${REGISTRATION PASSWORD}=
+${REGISTRATION PASSWORD CONFIRMATION}=
+${REGISTRATION DAY OF BIRTH}=
+${REGISTRATION MONTH OF BIRTH}=
+${REGISTRATION YEAR OF BIRTH}=
+${REGISTER BUTTON}=
+${SHOULD ACCEPT TC}= #use True or False
+${TERMS AND CONDITIONS}= 
+${SHOULD SET HONORIFIC}=
+${HONORIFICS}=  
+
+# Registration test values
+${user mail}=
+${user name}=
+${user lastname}=
+${user pass}=
+${user dob}=
+${user month}=
+${user year}=
+${post registration uri} 
+${honorific}=

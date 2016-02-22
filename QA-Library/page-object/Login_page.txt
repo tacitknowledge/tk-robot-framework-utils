@@ -1,0 +1,26 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${LOGIN PAGE URL}    		Site Name goes here
+${LOGIN EMAIL FIELD}    	elemement identifier not set
+${LOGIN PASSWORD FIELD}     elemement identifier not set
+${LOGIN FORM}     			elemement identifier not set
+${LOGIN ERR MSG}    		elemement identifier not set
+${LOGIN FIELD}				elemement is accessible on every page of the site		
+
+
+*** Keywords ***
+Go to Login Page
+    Click Element    ${LOGIN FIELD}
+
+login
+    [Arguments]    	${user name}    ${password}
+    Input Text    	${LOGIN EMAIL FIELD}    ${user name}
+    Click Element   ${LOGIN PASSWORD FIELD}
+    Input Text    	${LOGIN PASSWORD FIELD}    ${password}
+    Submit Form    	${LOGIN FORM}
+
+Login Should Have Failed
+    Element Should be Visible   ${LOGIN ERR MSG}
+  

@@ -1,0 +1,30 @@
+*** Settings *** 
+Library     Selenium2Library
+Library         OperatingSystem
+
+*** Variables ***
+${HMC LOGIN PAGE}  Variable not Set
+${HMC USERNAME}   Variable not Set
+${HMC PASSWORD}   Variable not Set
+
+
+*** Keywords ***
+Open HMC
+    Go To  ${HMC LOGIN PAGE}
+
+Login To HMC
+    Input Text      xpath=//input[@id='Main_user']    ${HMC USERNAME}
+    Input Password  xpath=//input[@id='Main_password']  ${HMC PASSWORD}
+    Click Link  xpath=//a[@id='Main_a']
+
+Expand explorer tree   [Arguments]     ${treeNode}
+    Click Element   xpath=//a[@id[contains(.,'${treeNode}')]]
+
+
+Search in input  [Arguments]  ${input_xpath}   ${search term}
+    Input Text  ${input_xpath}  ${search term}
+    Click Link  xpath=//a[@name[contains(.,'search')]] 
+
+
+Open search result element  
+    Click Image     xpath=//tr[@id[contains(.,"Content/OrganizerListEntry")]][1]//img

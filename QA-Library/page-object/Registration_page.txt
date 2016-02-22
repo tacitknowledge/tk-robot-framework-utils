@@ -1,0 +1,67 @@
+*** Settings ***
+Resource        common/site_declaration.txt
+
+*** Variables ***
+${REGISTRATION PAGE URL}			   link to registration page
+${REGISTRATION EMAIL}              user email
+${REGISTRATION NAME}               user name
+${REGISTRATION LASTNAME}	           user surname
+${REGISTRATION PASSWORD} 		   user password
+${REGISTRATION PASSWORD CONFIRMATION} 		   user password confirmation
+${REGISTRATION DAY OF BIRTH}	   Day Of Birth
+${REGISTRATION MONTH OF BIRTH}     Month Of Birth
+${REGISTRATION YEAR OF BIRTH}	   Year of Birth
+${REGISTER BUTTON}				   xpath of register button stands here
+${SHOULD ACCEPT TC}				   true in case there is a Terms and conditions field
+${TERMS AND CONDITIONS}			   Terms and Conditions field
+${SHOULD SET HONORIFIC}			   True in case honorofic is required
+${HONORIFICS}					   Honorific
+
+*** Keywords ***
+Go To Registration Page
+	Go To   ${SERVER}${REGISTRATION PAGE URL}
+
+Set Email
+	[Arguments]    ${email}
+	Input Text	 ${REGISTRATION EMAIL} 		${email}
+
+Set Name
+	[Arguments]    ${name}
+	Input Text	${REGISTRATION NAME} 		${name}
+
+Set Last Name
+	[Arguments]    ${lastname}
+	Input Text	${REGISTRATION LASTNAME} 		${lastname}
+
+
+Set Password
+	[Arguments]    ${password}
+	Input Text	${REGISTRATION PASSWORD} 		${password}
+	Input Text	${REGISTRATION PASSWORD CONFIRMATION} 		${password}
+
+Set Day Of Birth
+	[Arguments]    ${day}
+	Select From List	${REGISTRATION DAY OF BIRTH}		${day}
+
+
+Set Month of Birth
+	[Arguments]    ${month}
+	Select From List	${REGISTRATION MONTH OF BIRTH} 		${month}
+
+Set Year of Birth
+	[Arguments]    ${year}
+	Select From List	${REGISTRATION YEAR OF BIRTH}		${year}
+
+Accept Terms and Conditions
+	Run Keyword If  ${SHOULD ACCEPT TC}==${TRUE}   Select Checkbox   ${TERMS AND CONDITIONS}
+
+#Click TC
+#	  Select Checkbox   ${TERMS AND CONDITIONS}
+
+Set Honorifics
+	[Arguments]  ${honorific}
+	Run Keyword If  ${SHOULD SET HONORIFIC}==${TRUE}   Select From List  ${HONORIFICS}	${honorific}
+
+
+Click Register button
+	Click Element  ${REGISTER BUTTON}

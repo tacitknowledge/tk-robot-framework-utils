@@ -1,0 +1,55 @@
+***Settings***
+Library           Selenium2Library
+Library 		  String
+Library 		  Collections
+
+Resource 		page-object/Cart_page.robot
+Resource        page-object/Category_page.robot
+Resource		page-object/Checkout_page.robot
+Resource		page-object/Contact_Us.robot
+Resource		page-object/Login_page.robot
+Resource		page-object/Paypal_page.robot
+Resource		page-object/Product_page.robot
+Resource		page-object/Profile_page.robot
+Resource		page-object/Registration_page.robot
+Resource		page-object/Search_page.robot
+Resource        page-object/Thankyou_page.robot
+Resource        hmc/hmc_common.robot
+
+
+***Variables***
+
+${ENVIRONMENT CONFIG}		False
+${SERVER}  			variable not set
+${VALID PASSWD}		variable not set
+${VALID USER} 		Variable not set
+${BROWSER}			Variable not set
+${SEL SPEED}     	Variable not set
+${HOME_LINK} 		Variable not set
+
+***Keywords***
+Open Site
+    Run Keyword IF  "${ENVIRONMENT CONFIG}" != "${FALSE}"  Import Variables  ${ENVIRONMENT CONFIG}
+	Open Browser  ${SERVER}  ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed  ${SEL SPEED}
+
+
+Message  [Arguments]  ${message}
+    Log    ${message}      console=yes
+
+Go To Home URL
+    Go To   https://${GHDUSER}:${GHDPASS}@${SERVER}
+
+Go To HomePage
+    Click Link    ${HOME_LINK}
+
+Reach PDP by ID  [Arguments]   ${productID}
+    Go To Home URL
+	Go to Category Page
+    Select Product By ID  ${productID}
+
+Reach PDP
+    Go To HomePage
+    Go to Category Page
+    Select First Product
